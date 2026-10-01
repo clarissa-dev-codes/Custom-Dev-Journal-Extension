@@ -10,16 +10,51 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished"
+    "onStartupFinished",
+    "onView:custom-dev-journal-view"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "custom-dev-journal.openJournal",
-        "title": "Custom Dev Journal: Open Dashboard"
+        "title": "Custom Dev Journal",
+        "icon": "$(checklist)"
       }
     ]
+  },
+  "views":{
+    "custom-dev-journal-container": [
+      {
+        "type": "webview",
+        "id": "custom-dev-journal",
+        "name": "Custom Dev Journal"
+      }
+    ]
+  },
+  "commands": [
+    {
+      "command": "custom-dev-journal.openJournal",
+      "title": "Open Custom Dev Journal"
+    }
+  ],
+  "configuration":{
+    "title": "Custom Dev Journal Configuration",
+    "properties": {
+      "customDevJournal.theme": {
+        "type": "string",
+        "default": "cosmic-night",
+        "enum": [
+          "cosmic-night", 
+          "cosmic-night-light"
+        ],
+        "enumDescriptions": [
+          "Deep space theme with dark background and vibrant accents.",
+          "Light theme with soft background and vibrant accents."
+        ],
+        "description": "Select the theme for the Custom Dev Journal."
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
